@@ -2,15 +2,13 @@ package com.e.movie_tvshow.view;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Parcelable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.e.movie_tvshow.R;
 import com.e.movie_tvshow.adapter.MovieAdapter;
@@ -22,7 +20,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,7 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Use the {@link MovieFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MovieFragment extends Fragment implements MovieAdapter.itemCLickListener{
+public class MovieFragment extends Fragment implements MovieAdapter.itemCLickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,9 +42,11 @@ public class MovieFragment extends Fragment implements MovieAdapter.itemCLickLis
     private String mParam1;
 
     private List<MovieModel> movieModelList;
+
     public MovieFragment() {
         // Required empty public constructor
     }
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -78,8 +77,8 @@ public class MovieFragment extends Fragment implements MovieAdapter.itemCLickLis
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-         View v = inflater.inflate(R.layout.fragment_movie, container, false);
-  /*       recyclerView = v.findViewById(R.id.rcv);*/
+        View v = inflater.inflate(R.layout.fragment_movie, container, false);
+        /*       recyclerView = v.findViewById(R.id.rcv);*/
 
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://api.themoviedb.org/3/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -109,12 +108,11 @@ public class MovieFragment extends Fragment implements MovieAdapter.itemCLickLis
                     String img = moviesModel.getPoster_path();
                     double skore = moviesModel.getVote_avarage();*/
 
-                    /*movieModelList.add(moviesModel);*/
+                /*movieModelList.add(moviesModel);*/
 
-                    initRecyclerView(movieModelList,v);
+                initRecyclerView(movieModelList, v);
 
             }
-
 
 
             @Override
@@ -124,23 +122,25 @@ public class MovieFragment extends Fragment implements MovieAdapter.itemCLickLis
         });
         return v;
     }
-    private void initRecyclerView(List<MovieModel> movieList,View v) {
+
+    private void initRecyclerView(List<MovieModel> movieList, View v) {
         RecyclerView recyclerView = v.findViewById(R.id.rcv);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
 
         recyclerView.setLayoutManager(linearLayoutManager);
-        MovieAdapter movieAdapter = new MovieAdapter(getActivity(),movieList,this);
+        MovieAdapter movieAdapter = new MovieAdapter(getActivity(), movieList, this);
         recyclerView.setAdapter(movieAdapter);
     }
 
     @Override
     public void onItemCLick(MovieModel dataModel) {
-        Intent intent = new Intent(getActivity(),DetailActivity.class);
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
         intent.putExtra("judul", dataModel.getTitle());
         intent.putExtra("sinopsis_singkat", dataModel.getOverview());
         intent.putExtra("backdrop_movie", dataModel.getBackdrop_path());
+        intent.putExtra("poster_movie", dataModel.getPoster_path());
         intent.putExtra("rilis", dataModel.getRelease_date());
-        intent.putExtra("skor_rate", Float.parseFloat(String.valueOf(dataModel.getVote_avarage()))/2);
+        intent.putExtra("skor_rate", Float.parseFloat(String.valueOf(dataModel.getVote_avarage())) / 2);
         /*intent.putExtra("tagline_movie", dataModel.getTag());*/
         startActivity(intent);
     }

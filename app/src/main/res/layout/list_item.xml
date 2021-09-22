@@ -48,8 +48,6 @@
                 android:id="@+id/rate"
                 android:layout_alignStart="@+id/title"
                 android:layout_below="@+id/rilis"
-                android:outlineAmbientShadowColor="@color/white"
-                android:outlineSpotShadowColor="@color/white"
                 tools:targetApi="p" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

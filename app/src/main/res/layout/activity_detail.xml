@@ -1,70 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.DetailActivity"
-    android:background="@color/black">
+    android:background="@color/black"
+    tools:context=".view.DetailActivity">
 
     <ImageView
+        android:id="@+id/backdrop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/backdrop"
-        android:layout_marginTop="0dp"/>
+        android:layout_marginTop="0dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_favorite"
+        android:layout_below="@+id/backdrop"
+        android:layout_alignParentEnd="true"/>
 
     <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/rate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/backdrop"
-        android:backgroundTint="@color/white"/>
+        android:progressBackgroundTint="@color/teal_200"/>
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/tv_judul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/rate"
+        android:layout_marginTop="10dp"
         android:text="Judul "
-        android:textColor="@color/white"
-        android:layout_marginTop="10dp"/>
+        android:textColor="#FFF5F9" />
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/tv_judul"
-        android:layout_alignTop="@+id/tv_judul"
         android:id="@+id/judul"
-        android:layout_alignStart="@+id/tanggal_rilis"
-        android:textColor="@color/white"/>
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/tanggal_rilis"
+        android:layout_alignTop="@+id/tv_judul"
+        android:layout_toEndOf="@+id/tv_judul"
+        android:textColor="#FFF5F9" />
+
+    <TextView
         android:id="@+id/tv_sinopsis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/tv_tgl_rilis"
         android:text="Sinopsis "
-        android:textColor="@color/white"/>
+        android:textColor="#FFF5F9" />
+
     <TextView
+        android:id="@+id/sinopsis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sinopsis"
         android:layout_alignStart="@+id/tanggal_rilis"
         android:layout_alignTop="@+id/tv_sinopsis"
         android:layout_toEndOf="@+id/tv_sinopsis"
-        android:textColor="@color/white"/>
+        android:textColor="#FFF5F9" />
 
     <TextView
         android:id="@+id/tanggal_rilis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-smallcaps"
-        android:textSize="16sp"
-        android:layout_toEndOf="@+id/tv_tgl_rilis"
         android:layout_alignTop="@+id/tv_tgl_rilis"
-        android:textColor="@color/white"/>
+        android:layout_toEndOf="@+id/tv_tgl_rilis"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textColor="#FFF5F9"
+        android:textSize="16sp" />
+
     <TextView
+        android:id="@+id/tv_tgl_rilis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_tgl_rilis"
         android:layout_below="@+id/tv_judul"
         android:text="Tanggal RIlis "
-        android:textColor="@color/white"/>
+        android:textColor="#FFF5F9" />
 
 </RelativeLayout>

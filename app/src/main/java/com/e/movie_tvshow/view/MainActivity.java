@@ -1,20 +1,22 @@
 package com.e.movie_tvshow.view;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.Toast;
+import androidx.room.Room;
 
 import com.e.movie_tvshow.R;
+import com.e.movie_tvshow.database.MyAppDatabase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+    public static MyAppDatabase myAppDatabase;
     BottomNavigationView bottomNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,13 +24,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bottomNavigationView = findViewById(R.id.bn_main);
         loadFragment(new MovieFragment());
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        myAppDatabase = Room.databaseBuilder(getApplicationContext(), MyAppDatabase.class, "moviedb_favorite").allowMainThreadQueries().build();
 
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Fragment fragment = null;
-        switch (menuItem.getItemId()){
+        switch (menuItem.getItemId()) {
             case R.id.film_menu:
                 fragment = new MovieFragment();
                 break;
@@ -41,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
         return loadFragment(fragment);
     }
+
     private boolean loadFragment(Fragment fragment) {
         if (fragment != null) {
             getSupportFragmentManager().beginTransaction()

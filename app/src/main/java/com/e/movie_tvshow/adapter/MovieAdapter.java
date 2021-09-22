@@ -54,7 +54,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHol
         return (modelList != null) ? modelList.size() : 0;
     }
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder {
+    public static class MovieViewHolder extends RecyclerView.ViewHolder {
         TextView judul;
         ImageView poster;
         RatingBar skor;
